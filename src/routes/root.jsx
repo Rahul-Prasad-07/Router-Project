@@ -1,4 +1,5 @@
 // Create the root layout component
+import { Outlet } from "react-router-dom"
 
 export default function Root(){
 
@@ -33,7 +34,9 @@ export default function Root(){
             </nav>
 
         </div>
-        <div id="detail"></div>
+        <div id="detail">
+            <Outlet /> 
+        </div>
         
         </>
     )

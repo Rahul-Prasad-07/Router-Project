@@ -17,11 +17,16 @@ const router = createBrowserRouter([
     path:"/",
     element: <Root/>,
     errorElement: <ErrorPage/>,
+    children:[
+
+      {
+        path:"contacts/:contactId",
+        element: <Contact/>,
+      },
+      
+    ],
   },
-  {
-    path:"contacts/:contactId",
-    element: <Contact/>,
-  },
+  
 ]) ;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -33,3 +38,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 // This first route is what we often call the "root route" since the rest of our routes will render inside of it. 
 // It will serve as the root layout of the UI, we'll have nested layouts as we get farther along.
+// However, it's not inside of our root layout 😠 --> Nested Routes : We want the contact component to render inside of the <Root> layout.
+// We do it by making the contact route a child of the root route. -->You'll now see the root layout again but a blank page on the right. We need to tell the root route where we want it to render its child routes. We do that with <Outlet>.
+// Find the <div id="detail"> and put an outlet inside
+// 👉 Render an <Outlet>
