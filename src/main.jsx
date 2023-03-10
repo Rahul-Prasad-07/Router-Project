@@ -2,11 +2,10 @@ import  React from 'react';
 import Root from "./routes/root";
 import ReactDOM from 'react-dom/client';
 import ErrorPage from "./error-page";
-import Contact from "./routes/contact";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import Contact,{loader as contactLoader,} from "./routes/contact";
+import {loader as rootLoader, action as rootAction,} from "./routes/root";
+import EditContact, { action as editAction,} from "./routes/edit";
+import { createBrowserRouter,RouterProvider,} from "react-router-dom";
 import "./index.css";
 
 // Adding Router :First thing to do is create a Browser Router and configure our first route. 
@@ -17,13 +16,20 @@ const router = createBrowserRouter([
     path:"/",
     element: <Root/>,
     errorElement: <ErrorPage/>,
+    loader: rootLoader,
+    action: rootAction,
     children:[
-
       {
-        path:"contacts/:contactId",
-        element: <Contact/>,
+        path: "contacts/:contactId",
+        element: <Contact />,
+        loader: contactLoader,
       },
-      
+      {
+        path: "contacts/:contactId/edit",
+        element: <EditContact />,
+        loader: contactLoader,
+        action: editAction,
+      },
     ],
   },
   

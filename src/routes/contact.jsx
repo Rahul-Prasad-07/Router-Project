@@ -1,14 +1,23 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getContact } from "../contacts";
+
+export async function loader({ params }) {
+  const contact = await getContact(params.contactId);
+  return { contact };
+}
 
 export default function Contact() {
-  const contact = {
-    first: "Rahul",
-    last: "Prasad",
-    avatar: "https://media.licdn.com/dms/image/C4E03AQF6GVaJaM_x5w/profile-displayphoto-shrink_400_400/0/1623089905056?e=1683763200&v=beta&t=Z6hkcZKv4xfRjpQ_V1sSAKQ296i37qr698D74cWT5Ac",
-    twitter: "rahultwte",
-    notes: "Blockchain + DevOps Learner 🐳 | Student at IIIT Bangalore 📍 Open Source Advocate 🥑 | Sharing my experience and learning @GitHub 🧑‍💻",
-    favorite: true,
-  };
+
+  const {contact} = useLoaderData();
+
+  // const contact = {
+  //   first: "Rahul",
+  //   last: "Prasad",
+  //   avatar: "https://media.licdn.com/dms/image/C4E03AQF6GVaJaM_x5w/profile-displayphoto-shrink_400_400/0/1623089905056?e=1683763200&v=beta&t=Z6hkcZKv4xfRjpQ_V1sSAKQ296i37qr698D74cWT5Ac",
+  //   twitter: "rahultwte",
+  //   notes: "Blockchain + DevOps Learner 🐳 | Student at IIIT Bangalore 📍 Open Source Advocate 🥑 | Sharing my experience and learning @GitHub 🧑‍💻",
+  //   favorite: true,
+  // };
 
   return (
     <div id="contact">
