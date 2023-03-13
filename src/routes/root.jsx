@@ -41,7 +41,10 @@ export default function Root(){
                        placeholder="Search In Contacts" type="search" name="q" 
                        defaultValue={q}
                        onChange={(event) => {
-                        submit(event.currentTarget.form);
+                        const isFirstSearch = q == null;
+                        submit(event.currentTarget.form,{
+                          replace: !isFirstSearch,
+                        });
                       }}
                       
                     />
